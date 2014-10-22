@@ -1,0 +1,184 @@
+[
+  {
+    "op": "core/column-addition-by-fetching-urls",
+    "description": "Create column mapquest_json at index 1 by fetching URLs based on column address using expression grel:\"http://open.mapquestapi.com/nominatim/v1/search?format=json&limit=1&q=\" + escape(value, \"url\")\"",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "mapquest_json",
+    "columnInsertIndex": 1,
+    "baseColumnName": "address",
+    "urlExpression": "grel:\"http://open.mapquestapi.com/nominatim/v1/search?format=json&limit=1&q=\" + escape(value, \"url\")\"",
+    "onError": "set-to-blank",
+    "delay": 500
+  },
+    {
+    "op": "core/column-addition",
+    "description": "Create column mapquest_longitude at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].lon,v,v)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "mapquest_longitude",
+    "columnInsertIndex": 2,
+    "baseColumnName": "mapquest_json",
+    "expression": "grel:with(value.parseJson()[0].lon,v,v)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column mapquest_longitude using expression value.toNumber()",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "mapquest_longitude",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column mapquest_latitude at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].lat,v,v)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "mapquest_latitude",
+    "columnInsertIndex": 2,
+    "baseColumnName": "mapquest_json",
+    "expression": "grel:with(value.parseJson()[0].lat,v,v)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column mapquest_latitude using expression value.toNumber()",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "mapquest_latitude",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column mapquest_class at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].class,v,v)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "mapquest_class",
+    "columnInsertIndex": 2,
+    "baseColumnName": "mapquest_json",
+    "expression": "grel:with(value.parseJson()[0].class,v,v)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column mapquest_type at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].type,v,v)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "mapquest_type",
+    "columnInsertIndex": 2,
+    "baseColumnName": "mapquest_json",
+    "expression": "grel:with(value.parseJson()[0].type,v,v)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column mapquest_json",
+    "columnName": "mapquest_json"
+  },
+  {
+    "op": "core/column-addition-by-fetching-urls",
+    "description": "Create column bing_json at index 1 by fetching URLs based on column address using expression grel:\"http://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\"",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "bing_json",
+    "columnInsertIndex": 1,
+    "baseColumnName": "address",
+    "urlExpression": "grel:\"http://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\"",
+    "onError": "set-to-blank",
+    "delay": 500
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column bing_lat_lon at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +\", \" + pair[1])value",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "bing_lat_lon",
+    "columnInsertIndex": 2,
+    "baseColumnName": "bing_json",
+    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +\", \" + pair[1])value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column bing_lat_lon by separator",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "bing_lat_lon",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": ",",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column bing_lat_lon 1 to bing_latitude",
+    "oldColumnName": "bing_lat_lon 1",
+    "newColumnName": "bing_latitude"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column bing_lat_lon 2 to bing_longitude",
+    "oldColumnName": "bing_lat_lon 2",
+    "newColumnName": "bing_longitude"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column bing_confidence at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "bing_confidence",
+    "columnInsertIndex": 2,
+    "baseColumnName": "bing_json",
+    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column bing_type at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "bing_type",
+    "columnInsertIndex": 2,
+    "baseColumnName": "bing_json",
+    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column bing_json",
+    "columnName": "bing_json"
+  }
+]
