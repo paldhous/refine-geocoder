@@ -4,10 +4,10 @@
 
 It fetches JSON, which is parsed using [GREL](https://github.com/OpenRefine/OpenRefine/wiki/Google-refine-expression-language), Refine's expression language, to give columns for latitude and longitude from each service, plus the following:
 
-`bing_type` "Address" indicates geocoding to an exact address, see [here](http://msdn.microsoft.com/en-us/library/ff728811.aspx) for other possibilities.
-`bing_confidence` "High," "Medium," or "Low." Explanation [here](http://msdn.microsoft.com/en-us/library/ff701725.aspx).
-`mapquest_type` "Place," "amenity," "shop" etc indicate geocoding to an exact address; "highway" indicates geocoding to street only.
-`mapquest_class` Further detail on the entity geocoded.
+- `bing_type` "Address" indicates geocoding to an exact address, see [here](http://msdn.microsoft.com/en-us/library/ff728811.aspx) for other possibilities.
+- `bing_confidence` "High," "Medium," or "Low." Explanation [here](http://msdn.microsoft.com/en-us/library/ff701725.aspx).
+- `mapquest_type` "Place," "amenity," "shop" etc indicate geocoding to an exact address; "highway" indicates geocoding to street only.
+- `mapquest_class` Further detail on the entity geocoded.
 
 ### How to use
 
