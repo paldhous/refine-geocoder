@@ -9,8 +9,6 @@ It fetches JSON, which is parsed using [GREL](https://github.com/OpenRefine/Open
 - `mapquest_type` "Place," "amenity," "shop" etc indicate geocoding to an exact address; "highway" indicates geocoding to street only.
 - `mapquest_class` Further detail on the entity geocoded.
 
-The Bing Geocoder will need to be fed a well-formatted address, but MapQuest Open will work from more limited location description.
-
 
 ### How to use
 
