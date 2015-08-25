@@ -1,6 +1,6 @@
 # refine-geocoder
 
-`refine_geocoder.json` will geocode a simple list of addresses from [Open Refine](http://openrefine.org/) using the [Bing](http://msdn.microsoft.com/en-us/library/ff701715.aspx) and [MapQuest Open](http://developer.mapquest.com/web/products/open) APIs.
+`refine_geocoder.json` will geocode a simple list of addresses from [Open Refine](http://openrefine.org/) using the [Bing](http://msdn.microsoft.com/en-us/library/ff701715.aspx) and [MapQuest Open Nominatim](http://open.mapquestapi.com/nominatim/) APIs.
 
 It fetches JSON, which is parsed using [GREL](https://github.com/OpenRefine/OpenRefine/wiki/Google-refine-expression-language), Refine's expression language, to give columns for latitude and longitude from each service, plus the following:
 
@@ -21,6 +21,6 @@ Open the `Undo/Redo` tab in Open Refine, and click the `Apply...` button. Paste 
 
 Click the `Export` button to export your geocoded data in various formats.
 
-Make sure to follow the [Bing](http://www.microsoft.com/maps/product/terms.html) and [MapQuest Open](http://developer.mapquest.com/web/products/open/nominatim) Terms of Use, and provide appropriate credit to each geocoding service (also to OpenStreetMap for MapQuest Open).
+Make sure to follow the [Bing](http://www.microsoft.com/maps/product/terms.html) and [MapQuest Open](http://open.mapquestapi.com/nominatim/) Terms of Use, and provide appropriate credit to each geocoding service (also to OpenStreetMap for MapQuest Open).
 
 
