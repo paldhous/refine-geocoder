@@ -13,7 +13,7 @@ It fetches JSON, which is parsed using [GREL](https://github.com/OpenRefine/Open
 ### How to use
 
 Open `refine_geocoder.json` in a text editor and replace `BingMapsKey`
-with your own Bing API key. To obtain a key, you need a [Microsoft account](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1); then follow the instructions [here](http://www.gpsvisualizer.com/geocoder/key.html#bing).
+with your own Bing API key. If you don't already have a Microsoft Account, you will first need to [create one](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1). Then `Sign In` at the [Bing Maps Portal](https://www.bingmapsportal.com/) and select `My account>Create or view keys` from the top menu.
 
 Create a new Open Refine project from a text file containing a simple list of addresses/locations, with the extension `.tsv` and the header row `address`. See `sf_test_addresses.tsv` for an example.
 
