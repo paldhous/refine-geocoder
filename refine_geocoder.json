@@ -9,9 +9,9 @@
     "newColumnName": "mapquest_json",
     "columnInsertIndex": 1,
     "baseColumnName": "address",
-    "urlExpression": "grel:\"http://open.mapquestapi.com/nominatim/v1/search?format=json&limit=1&q=\" + escape(value, \"url\")\"",
+    "urlExpression": "grel:\"http://open.mapquestapi.com/nominatim/v1/search?key=MapQuestKey&format=json&limit=1&q=\" + escape(value, \"url\")\"",
     "onError": "set-to-blank",
-    "delay": 500
+    "delay": 100
   },
     {
     "op": "core/column-addition",
@@ -108,7 +108,7 @@
     "baseColumnName": "address",
     "urlExpression": "grel:\"http://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\"",
     "onError": "set-to-blank",
-    "delay": 500
+    "delay": 100
   },
   {
     "op": "core/column-addition",
