@@ -10,7 +10,7 @@
     "onError": "set-to-blank",
     "newColumnName": "osm_json",
     "columnInsertIndex": 1,
-    "delay": 250,
+    "delay": 0,
     "cacheResponses": true,
     "httpHeadersJson": [
       {
@@ -122,7 +122,7 @@
     "onError": "set-to-blank",
     "newColumnName": "bing_json",
     "columnInsertIndex": 1,
-    "delay": 100,
+    "delay": 0,
     "cacheResponses": false,
     "httpHeadersJson": null,
     "description": "Create column bing_json at index 1 by fetching URLs based on column address using expression grel:\"https://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\""
