@@ -21,6 +21,6 @@ Open the `Undo/Redo` tab in Open Refine, and click the `Apply...` button. Paste 
 
 Click the `Export` button to export your geocoded data in various formats.
 
-Make sure to follow the [Bing](http://www.microsoft.com/maps/product/terms.html) and [MapQuest Open](http://open.mapquestapi.com/nominatim/) Terms of Use, and provide appropriate credit to each geocoding service (also to OpenStreetMap for MapQuest Open).
+Make sure to follow the [Bing](http://www.microsoft.com/maps/product/terms.html) and [OpenStreetMap Nominatim](https://operations.osmfoundation.org/policies/nominatim/) Terms of Use, and provide appropriate credit to each geocoding service.
 
 
