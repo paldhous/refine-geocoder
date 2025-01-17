@@ -1,6 +1,6 @@
-# Open Refine Geocoder
+# OpenRefine Geocoder
 
-`refine_geocoder.json` will geocode a simple list of addresses from [Open Refine](https://openrefine.org/) using the [HERE](https://www.here.com/docs/bundle/geocoding-and-search-api-developer-guide/page/topics/quick-start.html) and [OpenStreetMap Nominatim](https://nominatim.org/release-docs/latest/api/Search/) APIs.
+`refine_geocoder.json` will geocode a simple list of addresses from [OpenRefine](https://openrefine.org/) using the [HERE](https://www.here.com/docs/bundle/geocoding-and-search-api-developer-guide/page/topics/quick-start.html) and [OpenStreetMap Nominatim](https://nominatim.org/release-docs/latest/api/Search/) APIs.
 
 To use the HERE geocoding API, sign up for a [free Limited Plan account](https://platform.here.com/portal/sign-up?step=verify-identity&aid=www.here.com-hero-pricing), which will allow you up to 1,000 geocoding requests per day. (If you need more, you should upgrade to a pay-as-you-go [Base plan](https://www.here.com/get-started/pricing).) Once you have verified your identity and signed in to the [HERE portal](https://platform.here.com/portal/), register an app, then copy and save its API key.
 
