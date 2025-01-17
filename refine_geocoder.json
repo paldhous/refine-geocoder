@@ -6,6 +6,95 @@
       "mode": "row-based"
     },
     "baseColumnName": "address",
+    "urlExpression": "grel:'https://geocode.search.hereapi.com/v1/geocode?q=' + escape(value, 'url') + '&apiKey=HereKey'",
+    "onError": "set-to-blank",
+    "newColumnName": "here_json",
+    "columnInsertIndex": 1,
+    "delay": 0,
+    "cacheResponses": true,
+    "httpHeadersJson": [
+      {
+        "name": "authorization",
+        "value": ""
+      },
+      {
+        "name": "if-modified-since",
+        "value": ""
+      },
+      {
+        "name": "accept-language",
+        "value": ""
+      },
+      {
+        "name": "accept-encoding",
+        "value": ""
+      },
+      {
+        "name": "user-agent",
+        "value": "OpenRefine 3.8.2 [TRUNK]"
+      },
+      {
+        "name": "accept",
+        "value": "*/*"
+      },
+      {
+        "name": "accept-charset",
+        "value": ""
+      }
+    ],
+    "description": "Create column here_json at index 1 by fetching URLs based on column address using expression grel:'https://geocode.search.hereapi.com/v1/geocode?q=' + escape(value, 'url') + '&apiKey=HereKey'"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "here_json",
+    "expression": "grel:value.parseJson()[\"items\"][0][\"position\"][\"lat\"]",
+    "onError": "set-to-blank",
+    "newColumnName": "here_latitude",
+    "columnInsertIndex": 2,
+    "description": "Create column here_latitude at index 2 based on column here_json using expression grel:value.parseJson()[\"items\"][0][\"position\"][\"lat\"]"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "here_json",
+    "expression": "grel:value.parseJson()[\"items\"][0][\"position\"][\"lng\"]",
+    "onError": "set-to-blank",
+    "newColumnName": "here_longitude",
+    "columnInsertIndex": 2,
+    "description": "Create column here_longitude at index 2 based on column here_json using expression grel:value.parseJson()[\"items\"][0][\"position\"][\"lng\"]"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "here_json",
+    "expression": "grel:value.parseJson()[\"items\"][0][\"resultType\"]",
+    "onError": "set-to-blank",
+    "newColumnName": "here_result_type",
+    "columnInsertIndex": 2,
+    "description": "Create column here_result_type at index 2 based on column here_json using expression grel:value.parseJson()[\"items\"][0][\"resultType\"]"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "here_json",
+    "description": "Remove column here_json"
+  },
+  {
+    "op": "core/column-addition-by-fetching-urls",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "address",
     "urlExpression": "grel:'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=' + escape(value, 'url')",
     "onError": "set-to-blank",
     "newColumnName": "osm_json",
@@ -18,41 +107,31 @@
         "value": ""
       },
       {
+        "name": "if-modified-since",
+        "value": ""
+      },
+      {
+        "name": "accept-language",
+        "value": ""
+      },
+      {
+        "name": "accept-encoding",
+        "value": ""
+      },
+      {
         "name": "user-agent",
-        "value": "OpenRefine 3.6.2 [579a6f7]"
+        "value": "OpenRefine 3.8.2 [TRUNK]"
       },
       {
         "name": "accept",
         "value": "*/*"
+      },
+      {
+        "name": "accept-charset",
+        "value": ""
       }
     ],
     "description": "Create column osm_json at index 1 by fetching URLs based on column address using expression grel:'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=' + escape(value, 'url')"
-  },
-  {
-    "op": "core/column-addition",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "baseColumnName": "osm_json",
-    "expression": "grel:value.parseJson()[0].lon",
-    "onError": "set-to-blank",
-    "newColumnName": "osm_longitude",
-    "columnInsertIndex": 2,
-    "description": "Create column osm_longitude at index 2 based on column osm_json using expression grel:value.parseJson()[0].lon"
-  },
-  {
-    "op": "core/text-transform",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "columnName": "osm_longitude",
-    "expression": "value.toNumber()",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10,
-    "description": "Text transform on cells in column osm_longitude using expression value.toNumber()"
   },
   {
     "op": "core/column-addition",
@@ -87,11 +166,24 @@
       "mode": "row-based"
     },
     "baseColumnName": "osm_json",
-    "expression": "grel:value.parseJson()[0].category",
+    "expression": "grel:value.parseJson()[0].lon",
     "onError": "set-to-blank",
-    "newColumnName": "osm_category",
+    "newColumnName": "osm_longitude",
     "columnInsertIndex": 2,
-    "description": "Create column osm_category at index 2 based on column osm_json using expression grel:value.parseJson()[0].category"
+    "description": "Create column osm_longitude at index 2 based on column osm_json using expression grel:value.parseJson()[0].lon"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "osm_longitude",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column osm_longitude using expression value.toNumber()"
   },
   {
     "op": "core/column-addition",
@@ -100,102 +192,15 @@
       "mode": "row-based"
     },
     "baseColumnName": "osm_json",
-    "expression": "grel:value.parseJson()[0].type",
+    "expression": "grel:value.parseJson()[0].category",
     "onError": "set-to-blank",
-    "newColumnName": "osm_type",
+    "newColumnName": "osm_category",
     "columnInsertIndex": 2,
-    "description": "Create column osm_type at index 2 based on column osm_json using expression grel:value.parseJson()[0].type"
+    "description": "Create column osm_category at index 2 based on column osm_json using expression grel:value.parseJson()[0].category"
   },
   {
     "op": "core/column-removal",
     "columnName": "osm_json",
     "description": "Remove column osm_json"
-  },
-  {
-    "op": "core/column-addition-by-fetching-urls",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "baseColumnName": "address",
-    "urlExpression": "grel:\"https://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\"",
-    "onError": "set-to-blank",
-    "newColumnName": "bing_json",
-    "columnInsertIndex": 1,
-    "delay": 0,
-    "cacheResponses": false,
-    "httpHeadersJson": null,
-    "description": "Create column bing_json at index 1 by fetching URLs based on column address using expression grel:\"https://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\""
-  },
-  {
-    "op": "core/column-addition",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "baseColumnName": "bing_json",
-    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +\", \" + pair[1])value",
-    "onError": "set-to-blank",
-    "newColumnName": "bing_lat_lon",
-    "columnInsertIndex": 2,
-    "description": "Create column bing_lat_lon at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +\", \" + pair[1])value"
-  },
-  {
-    "op": "core/column-split",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "columnName": "bing_lat_lon",
-    "guessCellType": true,
-    "removeOriginalColumn": true,
-    "mode": "separator",
-    "separator": ",",
-    "regex": false,
-    "maxColumns": 0,
-    "description": "Split column bing_lat_lon by separator"
-  },
-  {
-    "op": "core/column-rename",
-    "oldColumnName": "bing_lat_lon 1",
-    "newColumnName": "bing_latitude",
-    "description": "Rename column bing_lat_lon 1 to bing_latitude"
-  },
-  {
-    "op": "core/column-rename",
-    "oldColumnName": "bing_lat_lon 2",
-    "newColumnName": "bing_longitude",
-    "description": "Rename column bing_lat_lon 2 to bing_longitude"
-  },
-  {
-    "op": "core/column-addition",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "baseColumnName": "bing_json",
-    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)",
-    "onError": "set-to-blank",
-    "newColumnName": "bing_confidence",
-    "columnInsertIndex": 2,
-    "description": "Create column bing_confidence at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)"
-  },
-  {
-    "op": "core/column-addition",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "baseColumnName": "bing_json",
-    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)",
-    "onError": "set-to-blank",
-    "newColumnName": "bing_type",
-    "columnInsertIndex": 2,
-    "description": "Create column bing_type at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)"
-  },
-  {
-    "op": "core/column-removal",
-    "columnName": "bing_json",
-    "description": "Remove column bing_json"
   }
 ]
