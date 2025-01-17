@@ -6,7 +6,7 @@ To use the HERE geocoding API, sign up for a [free Limited Plan account](https:/
 
 `refine_geocoder.json` fetches JSON for the two APIs, which is parsed using [GREL](https://openrefine.org/docs/manual/grel), Refine's expression language, to give columns for latitude and longitude from each service, plus the following:
 
--   `here_result_type` "houseNumber" indicates geocoding to an exact address, "street," indicates geocoding to street only.
+-   `here_result_type` "houseNumber" indicates geocoding to an exact address; "street," indicates geocoding to street only.
 -   `osm_category` "place," "amenity," "office" etc indicate geocoding to an exact address; "highway" indicates geocoding to street only.
 
 ### How to use
