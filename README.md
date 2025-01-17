@@ -1,4 +1,4 @@
-# Refine Geocoder
+# Open Refine Geocoder
 
 `refine_geocoder.json` will geocode a simple list of addresses from [Open Refine](https://openrefine.org/) using the [HERE](https://www.here.com/docs/bundle/geocoding-and-search-api-developer-guide/page/topics/quick-start.html) and [OpenStreetMap Nominatim](https://nominatim.org/release-docs/latest/api/Search/) APIs.
 
